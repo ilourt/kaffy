@@ -73,7 +73,7 @@ defmodule Kaffy.ResourceQuery do
 
   def total_count(schema, do_cache, query, opts) do
     result =
-      from(s in query, select: fragment("count(*)"))
+      from(s in query, select: count())
       |> Kaffy.Utils.repo().one(opts)
 
     if do_cache and result > 100_000 do
